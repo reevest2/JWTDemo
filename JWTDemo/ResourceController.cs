@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JWTDemo;
@@ -7,6 +8,7 @@ namespace JWTDemo;
 public class ResourceController : Controller
 {
     [HttpGet]
+    [Authorize]
     public async Task<IActionResult> GetResource()
     {
         var result = new Resource();
