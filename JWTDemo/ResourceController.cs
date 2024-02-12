@@ -8,7 +8,7 @@ namespace JWTDemo;
 public class ResourceController : Controller
 {
     [HttpGet]
-    [Authorize(Roles = "user")]
+    [Authorize(AuthenticationSchemes = "Bearer")]
     public async Task<IActionResult> GetResource()
     {
         var result = new Resource();

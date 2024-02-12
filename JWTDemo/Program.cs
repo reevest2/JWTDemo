@@ -10,6 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddRoleManager<RoleManager<IdentityRole>>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
@@ -66,9 +71,6 @@ builder.Services.AddCors(options =>
     options.AddDefaultPolicy(builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
 
 
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddRoleManager<RoleManager<IdentityRole>>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
 
 
 var app = builder.Build();
